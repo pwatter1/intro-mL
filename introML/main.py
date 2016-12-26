@@ -1,6 +1,6 @@
-# IRIS
+# IRIS TUTORIAL
 
-# warnings
+# deprecation warnings
 def warn(*args, **kwargs):
 	pass
 import warnings
@@ -78,7 +78,6 @@ for name, model in models:
 	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
 	print(msg)
 
-'''
 # compare algorithms
 fig = plt.figure()
 fig.suptitle('Algorithm Comparison')
@@ -86,7 +85,7 @@ ax = fig.add_subplot(111)
 plt.boxplot(results)
 ax.set_xticklabels(names)
 plt.show()
-'''
+
 
 # make predictions on validation dataset
 svm = SVC()
