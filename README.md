@@ -1,6 +1,7 @@
 # intro-ml
 
-These are mini projects for my introduction to Machine Learning. Classifying Iris flowers and predicting future S&P500 and NASDAQ stock prices. More to be added.
+These are mini projects for my introduction to Machine Learning. ------
+Classifying Iris flowers and predicting future S&P500 and NASDAQ stock prices. More to be added.
 
 ## Overview
 The python script "stock-predict.py" does the following:
