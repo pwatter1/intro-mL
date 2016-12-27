@@ -1,5 +1,24 @@
 # intro-ml
 
-These are mini projects for my introduction to Machine Learning. Classifying Iris flowers on sepal and petal width/length. Predicting future S&P500 and NASDAQ stock prices. More to be added.
+These are mini projects for my introduction to Machine Learning. Classifying Iris flowers and predicting future S&P500 and NASDAQ stock prices. More to be added.
 
-![alt tag](http://3qeqpr26caki16dnhd19sv6by6v.wpengine.netdna-cdn.com/wp-content/uploads/2016/06/Scattplot-Matrix.png)
+## Overview
+The python script "stock-predict.py" does the following:
+
+1. 
+2.
+3.
+
+
+
+## Dependencies
+* numpy (http://www.numpy.org/)
+* not finished.
+
+# Usage
+Install all the necesary dependencies.
+Then just run:
+```
+python stock-predict.py
+```
+
