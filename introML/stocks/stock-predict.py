@@ -59,9 +59,6 @@ def getStockDataFromWeb(fout, start_string, end_string):
     frankfurt = getStock('^GDAXI', start, end)
     london = getStock('^FTSE', start, end)
     paris = getStock('^FCHI', start, end)
-    hkong = getStock('^HSI', start, end)
-    nikkei = getStock('^N225', start, end)
-    australia = getStock('^AXJO', start, end)
     
     djia = getStockFromQuandl("YAHOO/INDEX_DJI", 'Djia', start_string, end_string) 
     
@@ -70,7 +67,7 @@ def getStockDataFromWeb(fout, start_string, end_string):
     out.columns = out.columns + '_Out'
     out['Return_Out'] = out['AdjClose_Out'].pct_change()
     
-    return [out, nasdaq, djia, frankfurt, london, paris, hkong, nikkei, australia]
+    return [out, nasdaq, djia, frankfurt, london, paris]
 
 
 
