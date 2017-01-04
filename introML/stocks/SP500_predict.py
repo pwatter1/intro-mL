@@ -74,4 +74,10 @@ max_tree_depth = 6
 decision_tree = gl.decision_tree_classifier.create(training, validation_set=None,
 													target='outcome', features=l_features,
 													max_depth=max_tree_depth, verbose=False)
-decision_tree.evaluate(training)['accuracy'], decision_tree.evaluate(testing)['accuracy']
+print decision_tree.evaluate(training)['accuracy'], decision_tree.evaluate(testing)['accuracy']
+
+predictions = decision_tree.predict(testing)
+# add the prediction column to testing set
+testing['predictions'] = predictions
+# check first ten predictions compared to real values
+print testing[['datetime', 'outcome', 'predictions']].head(10)
