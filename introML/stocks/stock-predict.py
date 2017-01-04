@@ -1,7 +1,5 @@
-import cPickle
 import numpy as np
 import pandas as pd
-import datetime
 import operator
 import pandas.io.data
 import re
@@ -40,7 +38,6 @@ def getStockFromQuandl(symbol, name, start, end):
     """
     import Quandl
     df =  Quandl.get(symbol, trim_start = start, trim_end = end, authtoken="your token")
- 
     df.columns.values[-1] = 'AdjClose'
     df.columns = df.columns + '_' + name
     df['Return_%s' %name] = df['AdjClose_%s' %name].pct_change()
@@ -64,7 +61,6 @@ def getStockDataFromWeb(fout, start_string, end_string):
     
     out =  pd.io.data.get_data_yahoo(fout, start, end)
     out.columns.values[-1] = 'AdjClose'
-    out.columns = out.columns + '_Out'
     out['Return_Out'] = out['AdjClose_Out'].pct_change()
     
     return [out, nasdaq, djia, frankfurt, london, paris]
