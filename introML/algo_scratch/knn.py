@@ -1,11 +1,15 @@
 import csv
 import random
+import math
+
+# MachineLearningMastery.com Algo Tutorial
 
 with open('iris.data', 'rb') as csvfile:
 	lines = csv.reader(csvfile)
 		for row in lines:
 			print ', '.join(row)
 
+# load a dataset and split into train & test sets
 def loadDataset(filename, split, trainingSet=[], testSet=[]):
 	with open(filename, 'rb') as csvfile:
 		lines = csv.reader(csvfile)
@@ -18,9 +22,10 @@ def loadDataset(filename, split, trainingSet=[], testSet=[]):
 			else:
 				testSet.append(dataset[x])
 
-trainingSet = []
-testSet = []
-loadDataset('iris.data', 0.66, trainingSet, testSet)
-print 'Train: ' + repr(len(trainingSet))
-print 'Test: ' + repr(len(testSet))
+# calculate similarity 
+def euclideanDistance(instance1, instance2, length):
+	distance = 0
+	for x in range(length):
+		distance += pow((instance1[x] - instance2[x]), 2)
+	return math.sqrt(distance)
 
