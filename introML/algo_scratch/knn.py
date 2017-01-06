@@ -3,13 +3,8 @@ import random
 import math
 import operator
 
-# MachineLearningMastery.com Algo Tutorial
-'''
-with open('iris.data', 'rb') as csvfile:
-	lines = csv.reader(csvfile)
-	for row in lines:
-		print ', '.join(row)
-'''
+# MachineLearningMastery.com KNN Algo Tutorial
+
 # load a dataset and split into train & test sets
 def loadDataset(filename, split, trainingSet=[], testSet=[]):
 	with open(filename, 'rb') as csvfile:
@@ -53,9 +48,9 @@ def getNeighbors(trainingSet, testInstance, k):
 	distances.sort(key=operator.itemgetter(1))
 
 	for x in range(k):
-		neighbours.append(distances[x][0])
+		neighbors.append(distances[x][0])
 
-	return neighbours
+	return neighbors
 
 # test the getNeighbors function 
 trainSet = [[2, 2, 2, 'a'], [4, 4, 4, 'b']]
@@ -64,7 +59,7 @@ k = 1
 neighbors = getNeighbors(trainSet, testInstance, 1)
 print(neighbors)
 
-# summarize a prediction from neighbours
+# summarize a prediction from neighbors
 def getResponse(neighbors):
 	classVotes = {}
 	for x in range(len(neighbors)):
@@ -83,3 +78,42 @@ def getResponse(neighbors):
 neighbors = [[1,1,1,'a'], [2,2,2,'a'], [3,3,3,'b']]
 response = getResponse(neighbors)
 print(response)
+
+# calculate accuracy of predictions
+def getAccuracy(testSet, predictions):
+	correct = 0
+
+	for x in range(len(testSet)):
+		if testSet[x][-1] is predictions[x]:
+			correct += 1
+
+	return (correct / float(len(testSet))) * 100.0
+
+# test the getAccuracy function
+testSet = [[1,1,1,'a'], [2,2,2,'a'], [3,3,3,'b']]
+predictions = ['a', 'a', 'a']
+accuracy = getAccuracy(testSet, predictions)
+print(accuracy)
+
+def main():
+	# prepare data
+	trainingSet=[]
+	testSet=[]
+	split = 0.67
+	loadDataset('iris.data', split, trainingSet, testSet)
+	print 'Train set: ' + repr(len(trainingSet))
+	print 'Test set: ' + repr(len(testSet))
+
+	# generate predictions
+	predictions=[]
+	k = 3
+	for x in range(len(testSet)):
+		neighbors = getNeighbors(trainingSet, testSet[x], k)
+		result = getResponse(neighbors)
+		predictions.append(result)
+		print('> predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
+	
+	accuracy = getAccuracy(testSet, predictions)
+	print('Accuracy: ' + repr(accuracy) + '%')
+	
+main()
