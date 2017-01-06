@@ -97,3 +97,34 @@ def get_split(dataset, n_features):
 				b_score  = gini
 				b_groups = groups
 	return {'index':b_index, 'value':b_value, 'groups':b_groups}
+
+
+
+
+
+# Test the random forest algorithm
+seed(1)
+
+# load and prepare data
+filename = 'sonar.all-data.csv'
+dataset = load_csv(filename)
+
+# convert string attributes to integers
+for i in range(0, len(dataset[0])-1):
+	str_column_to_float(dataset, i)
+
+# convert class column to integers
+str_column_to_int(dataset, len(dataset[0])-1)
+
+# evaluate algorithm
+n_folds = 5
+max_depth = 10
+min_size = 1
+sample_size = 1.0
+n_features = int(sqrt(len(dataset[0])-1))
+
+for n_trees in [1, 5, 10]:
+	scores = evaluate_algorithm(dataset, random_forest, n_folds, max_depth, min_size, sample_size, n_trees, n_features)
+	print('Trees: %d' % n_trees)
+	print('Scores: %s' % scores)
+	print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
