@@ -77,6 +77,31 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 		scores.append(accuracy)
 	return scores
 
+# split a dataset based on an attribute and attribute value
+def test_split(index, value, dataset):
+	left, right = list(), list()
+
+	for row in dataset:
+		if row[index] < value:
+			left.append(row)
+		else:
+			right.append(row)
+	return right, left
+
+# calculate the gini index for a split dataset
+def gini_index(groups, class_values):
+	gini = 0.0
+
+	for class_value in class_values:
+		for group in groups:
+			size = len(group)
+			if size == 0:
+				continue
+			proportion = [row[-1] for row in group].count(class_value) / float(size)
+			gini += (proportion * (1.0 - proportion))
+	return gini
+
+
 def get_split(dataset, n_features):
 	class_values = list(set(row[-1] for row in dataset))
 	b_index, b_value, b_score, b_groups = 999, 999, 999, None
