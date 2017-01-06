@@ -57,7 +57,7 @@ def predict_prices_LR(dates,prices,x):
 
 get_data('tsla.csv') 
 
-predicted_price_LR, coefficient, constant = predict_prices_LR(dates,prices,29)  
+predicted_price_LR, coefficient, constant = predict_prices_LR(dates, prices, 29)  
 print "The stock open price upcoming: $", str(predicted_price_LR)
 print "The regression coefficient is ", str(coefficient),", and the constant is ", str(constant)
 
