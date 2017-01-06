@@ -1,7 +1,11 @@
 # intro-ml
 
 These are mini projects for my introduction to Machine Learning.
-Implementing ML algorithms from scratch to learn in and outs, predicting future S&P500 and NASDAQ stock prices, classifying iris flowers, more to be added.
+
+* Implementing ML algorithms from scratch to learn in and outs
+* Predicting future S&P500 and NASDAQ stock prices
+* Classifying iris flowers
+* More to be added as time goes on
 
 ## Overview
 
