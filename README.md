@@ -16,4 +16,5 @@ These are mini projects for my introduction to Machine/Deep Learning.
 * numpy (http://www.numpy.org/)
 * etc.
 
+![Alt Tag](https://github.com/pwatter1/introML/blob/master/introML/deep_learn/samples1.png)
 
