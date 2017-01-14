@@ -1,6 +1,6 @@
-# Kaggle FKD Tutorial
+# Kaggle Facial Keypoint Detection Tutorial
 
-# rid deprecation warnings
+# deprecation warnings
 def warn(*args, **kwargs):
     pass
 
@@ -20,10 +20,10 @@ from nolearn.lasagne import NeuralNet
 FTEST  = '~/Documents/introML/introML/deep_learn/test.csv'
 FTRAIN = '~/Documents/introML/introML/deep_learn/training.csv'
 
+
 def load(test=False, cols=None):
     # Loads data from FTEST if file present, otherwise from FTRAIN.
-    # Pass a list of cols if you're only interested in a subset of the
-    # target columns.
+    # Pass list of cols if only interested in subset of target columns.
     
     file_name = FTEST if test else FTRAIN
     # load pandas dataframe
@@ -63,11 +63,11 @@ print("y.shape == {}; y.min == {:.3f}; y.max == {:.3f}".format(
 '''
 
 # first model
-net1 = NeuralNet(layers=[  
-                        ('input', layers.InputLayer),
-                        ('hidden', layers.DenseLayer),
-                        ('output', layers.DenseLayer),
-                        ],
+net = NeuralNet(layers=[  
+                       ('input', layers.InputLayer),
+                       ('hidden', layers.DenseLayer),
+                       ('output', layers.DenseLayer),
+                       ],
 
     # layer parameters:
     input_shape=(None, 9216),  # 96x96 input pixels per batch
@@ -86,22 +86,50 @@ net1 = NeuralNet(layers=[
     )
 
 X, y = load()
-net1.fit(X, y)
 
-def plot_sample(x, y, axis):
-    img = x.reshape(96, 96)
-    axis.imshow(img, cmap='gray')
-    axis.scatter(y[0::2] * 48 + 48, y[1::2] * 48 + 48, marker='x', s=10)
+net.fit(X, y)
 
-X, _ = load(test=True)
-y_pred = net1.predict(X)
+# wrapper for convolutional neural net
+def load2d(test=False, cols=None):
+    X, y = load(test=test)
+    X = X.reshape(-1, 1, 96, 96)
+    return X, y
 
-fig = plt.figure(figsize=(6, 6))
-fig.subplots_adjust(
-    left=0, right=1, bottom=0, top=1, hspace=0.05, wspace=0.05)
+cnet = NeuralNet(layers=[
+                        ('input', layers.InputLayer),
+                        ('conv1', layers.Conv2DLayer),
+                        ('pool1', layers.MaxPool2DLayer),
+                        ('conv2', layers.Conv2DLayer),
+                        ('pool2', layers.MaxPool2DLayer),
+                        ('conv3', layers.Conv2DLayer),
+                        ('pool3', layers.MaxPool2DLayer),
+                        ('hidden4', layers.DenseLayer),
+                        ('hidden5', layers.DenseLayer),
+                        ('output', layers.DenseLayer),
+                        ],
+    input_shape=(None, 1, 96, 96),
+    conv1_num_filters=32, 
+    conv1_filter_size=(3,3),
+    pool1_pool_size=(2, 2),
+    conv2_num_filters=64, 
+    conv2_filter_size=(2, 2), 
+    pool2_pool_size=(2, 2),
+    conv3_num_filters=128, 
+    conv3_filter_size=(2, 2), 
+    pool3_pool_size=(2, 2),
+    hidden4_num_units=500, 
+    hidden5_num_units=500,
+    output_num_units=30, 
+    output_nonlinearity=None,
 
-for i in range(16):
-    ax = fig.add_subplot(4, 4, i + 1, xticks=[], yticks=[])
-    plot_sample(X[i], y_pred[i], ax)
+    update_learning_rate=0.01,
+    update_momentum=0.9,
 
-plt.show()
+    regression=True,
+    max_epochs=100,
+    verbose=1,
+    )
+
+
+X, y = load2d()  # load 2-d data
+cnet.fit(X, y)
