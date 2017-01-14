@@ -56,12 +56,10 @@ def load(test=False, cols=None):
     return X, y
 
 # describe data 
-'''
 print("X.shape == {}; X.min == {:.3f}; X.max == {:.3f}".format(
     X.shape, X.min(), X.max()))
 print("y.shape == {}; y.min == {:.3f}; y.max == {:.3f}".format(
     y.shape, y.min(), y.max()))
-'''
 
 # first model
 net = NeuralNet(layers=[  
@@ -110,6 +108,7 @@ def load2d(test=False, cols=None):
     X = X.reshape(-1, 1, 96, 96)
     return X, y
 
+# second model
 cnet = NeuralNet(layers=[
                         ('input', layers.InputLayer),
                         ('conv1', layers.Conv2DLayer),
@@ -159,8 +158,8 @@ y_pred1 = net.predict(sample1)[0]
 y_pred2 = cnet.predict(sample2)[0]
 
 fig = plt.figure(figsize=(6, 3))
-ax = fig.add_subplot(1, 2, 1, xticks=[], yticks=[])
+ax  = fig.add_subplot(1, 2, 1, xticks=[], yticks=[])
 plot_sample(sample1[0], y_pred1, ax)
-ax = fig.add_subplot(1, 2, 2, xticks=[], yticks=[])
+ax  = fig.add_subplot(1, 2, 2, xticks=[], yticks=[])
 plot_sample(sample1[0], y_pred2, ax)
 plt.show()
