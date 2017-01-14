@@ -1,8 +1,6 @@
-python kaggle_FKD.py net1 output
-
-  InputLayer          (None, 9216)            produces    9216 outputs
-  DenseLayer          (None, 100)             produces     100 outputs
-  DenseLayer          (None, 30)              produces      30 outputs
+InputLayer          (None, 9216)            produces    9216 outputs
+DenseLayer          (None, 100)             produces     100 outputs
+DenseLayer          (None, 30)              produces      30 outputs
 
  Epoch  |  Train loss  |  Valid loss  |  Train / Val
 --------|--------------|--------------|----------------
