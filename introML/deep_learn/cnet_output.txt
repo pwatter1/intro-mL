@@ -1,0 +1,34 @@
+InputLayer            (None, 1, 96, 96)       produces    9216 outputs
+Conv2DCCLayer         (None, 32, 94, 94)      produces  282752 outputs
+MaxPool2DCCLayer      (None, 32, 47, 47)      produces   70688 outputs
+Conv2DCCLayer         (None, 64, 46, 46)      produces  135424 outputs
+MaxPool2DCCLayer      (None, 64, 23, 23)      produces   33856 outputs
+Conv2DCCLayer         (None, 128, 22, 22)     produces   61952 outputs
+MaxPool2DCCLayer      (None, 128, 11, 11)     produces   15488 outputs
+DenseLayer            (None, 500)             produces     500 outputs
+DenseLayer            (None, 500)             produces     500 outputs
+DenseLayer            (None, 30)              produces      30 outputs
+
+
+
+ Epoch  |  Train loss  |  Valid loss  |  Train / Val
+--------|--------------|--------------|----------------
+     1  |    0.111763  |    0.042740  |     2.614934
+     2  |    0.018500  |    0.009413  |     1.965295
+     3  |    0.008598  |    0.007918  |     1.085823
+     4  |    0.007292  |    0.007284  |     1.001139
+     5  |    0.006783  |    0.006841  |     0.991525
+...
+   500  |    0.001791  |    0.002013  |     0.889810
+   501  |    0.001789  |    0.002011  |     0.889433
+   502  |    0.001786  |    0.002009  |     0.889044
+   503  |    0.001783  |    0.002007  |     0.888534
+   504  |    0.001780  |    0.002004  |     0.888095
+   505  |    0.001777  |    0.002002  |     0.887699
+...
+   995  |    0.001083  |    0.001568  |     0.690497
+   996  |    0.001082  |    0.001567  |     0.690216
+   997  |    0.001081  |    0.001567  |     0.689867
+   998  |    0.001080  |    0.001567  |     0.689595
+   999  |    0.001080  |    0.001567  |     0.689089
+  1000  |    0.001079  |    0.001566  |     0.688874
