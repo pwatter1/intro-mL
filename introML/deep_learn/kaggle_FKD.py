@@ -91,18 +91,18 @@ X, y = load()
 net.fit(X, y)
 print mean_squared_error(net.predict(X), y)
 
-# plot our model
+# plot our net model
 train_loss = np.array([i["train_loss"] for i in net1.train_history_])
 valid_loss = np.array([i["valid_loss"] for i in net1.train_history_])
-pyplot.plot(train_loss, linewidth=3, label="train")
-pyplot.plot(valid_loss, linewidth=3, label="valid")
-pyplot.grid()
-pyplot.legend()
-pyplot.xlabel("epoch")
-pyplot.ylabel("loss")
-pyplot.ylim(1e-3, 1e-2)
-pyplot.yscale("log")
-pyplot.show()
+plt.plot(train_loss, linewidth=3, label="train")
+plt.plot(valid_loss, linewidth=3, label="valid")
+plt.grid()
+plt.legend()
+plt.xlabel("epoch")
+plt.ylabel("loss")
+plt.ylim(1e-3, 1e-2)
+plt.yscale("log")
+plt.show()
 
 # wrapper for convolutional neural net
 def load2d(test=False, cols=None):
@@ -122,6 +122,7 @@ cnet = NeuralNet(layers=[
                         ('hidden5', layers.DenseLayer),
                         ('output', layers.DenseLayer),
                         ],
+
     input_shape=(None, 1, 96, 96),
     conv1_num_filters=32, 
     conv1_filter_size=(3,3),
@@ -146,6 +147,20 @@ cnet = NeuralNet(layers=[
     )
 
 
-X, y = load2d()  # load 2-d data
+X, y = load2d()  
+
 cnet.fit(X, y)
 print mean_squared_error(cnet.predict(X), y)
+
+# compare predictions btwn both net and cnet models
+sample1 = load(test=True)[0][6:7]
+sample2 = load2d(test=True)[0][6:7]
+y_pred1 = net.predict(sample1)[0]
+y_pred2 = cnet.predict(sample2)[0]
+
+fig = plt.figure(figsize=(6, 3))
+ax = fig.add_subplot(1, 2, 1, xticks=[], yticks=[])
+plot_sample(sample1[0], y_pred1, ax)
+ax = fig.add_subplot(1, 2, 2, xticks=[], yticks=[])
+plot_sample(sample1[0], y_pred2, ax)
+plt.show()
