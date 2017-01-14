@@ -109,6 +109,7 @@ cnet = NeuralNet(layers=[
                         ('hidden5', layers.DenseLayer),
                         ('output', layers.DenseLayer),
                         ],
+                 
     input_shape=(None, 1, 96, 96),
     conv1_num_filters=32, 
     conv1_filter_size=(3,3),
