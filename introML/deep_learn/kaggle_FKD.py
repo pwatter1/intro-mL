@@ -12,6 +12,7 @@ warnings.warn = warn
 
 from pandas import read_csv
 from sklearn.utils import shuffle
+from sklearn.metrics import mean_squared_error
 from lasagne import layers
 from lasagne.updates import nesterov_momentum
 from nolearn.lasagne import NeuralNet
@@ -88,6 +89,7 @@ net = NeuralNet(layers=[
 X, y = load()
 
 net.fit(X, y)
+print mean_squared_error(net.predict(X), y)
 
 # wrapper for convolutional neural net
 def load2d(test=False, cols=None):
@@ -133,3 +135,4 @@ cnet = NeuralNet(layers=[
 
 X, y = load2d()  # load 2-d data
 cnet.fit(X, y)
+print mean_squared_error(cnet.predict(X), y)
