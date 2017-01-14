@@ -1,22 +1,19 @@
 # intro-ml
-
-These are mini projects for my introduction to Machine Learning.
+## Overview
+These are mini projects for my introduction to Machine/Deep Learning.
 
 * Implementing ML algorithms from scratch to learn in and outs
-* Predicting future S&P500 and NASDAQ stock prices
-* Classifying iris flowers
-* More to be added as time goes on
-
-## Overview
+* ML algorithms with examples on stocks and flowers
+* Deep Learning with Computer Vision
+* More to be added as time goes on and i get more indepth
 
 ## Dependencies
+* scikitlearn
+* tensorflow
+* pandas
+* keras
+* lasagne
 * numpy (http://www.numpy.org/)
-* not finished.
+* etc.
 
-# Usage
-Install all the necesary dependencies.
-Then just run:
-```
-python main.py
-```
 
